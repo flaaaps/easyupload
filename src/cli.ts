@@ -2,23 +2,29 @@ import arg from "arg"
 import fs from "fs"
 
 import SftUpload from "sftp-upload"
+import { Log, Options } from "./index"
+import { loadConfig } from "./config"
 
-function parseArgsToOptions(raw): Options {
+function parseArgsToOptions(raw: string[]): Options {
     const args = arg(
         {
             "--config": String,
             "--log-type": String,
+            "--ignore-global-config": Boolean,
 
             "-c": "--config",
             "-log": "--log-type",
+            "-i": "--ignore-global-config"
         },
         {
             argv: raw.slice(2),
         }
     )
+
     return {
         configFile: args["--config"] || "ezupload.json",
         logType: (args["--log-type"] as Log) || "all",
+        ignoreGlobalConfig: !!args["--ignore-global-config"]
     }
 }
 

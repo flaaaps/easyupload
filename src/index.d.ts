@@ -11,6 +11,7 @@ export type Config = {
 export type Options = {
     logType: Log
     configFile: string
+    ignoreGlobalConfig: boolean
 }
 
 export type Log = "all" | "none" | "files" | "progress"
