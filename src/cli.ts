@@ -2,40 +2,35 @@ import arg from "arg"
 import fs from "fs"
 
 import SftUpload from "sftp-upload"
+import { Log, Options } from "./index"
+import { loadConfig } from "./config"
 
-function parseArgsToOptions(raw): Options {
+function parseArgsToOptions(raw: string[]): Options {
     const args = arg(
         {
             "--config": String,
             "--log-type": String,
+            "--ignore-global-config": Boolean,
 
             "-c": "--config",
             "-log": "--log-type",
+            "-i": "--ignore-global-config"
         },
         {
             argv: raw.slice(2),
         }
     )
+
     return {
         configFile: args["--config"] || "ezupload.json",
         logType: (args["--log-type"] as Log) || "all",
+        ignoreGlobalConfig: !!args["--ignore-global-config"]
     }
 }
 
-function checkConfig(config: Config) {
-    if (!config.host) {
-        throw new Error('config error: specify the "host" field')
-    } else if (!config.password && !config.privateKeyFile) {
-        throw new Error('config error: specify "password" or "privateKeyFile" field')
-    } else if (!config.path || !config.remoteDir) {
-        throw new Error('config error: both "path" and "remoteDir" fields are required')
-    }
-}
-
-export function cli(args) {
+export function cli(args: string[]) {
     const options = parseArgsToOptions(args)
-    const config: Config = JSON.parse(fs.readFileSync(options.configFile, "utf-8"))
-    checkConfig(config)
+    const config = loadConfig(options)
 
     const sftpConfig = {
         ...config,
