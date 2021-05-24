@@ -28,20 +28,9 @@ function parseArgsToOptions(raw: string[]): Options {
     }
 }
 
-function checkConfig(config: Config) {
-    if (!config.host) {
-        throw new Error('config error: specify the "host" field')
-    } else if (!config.password && !config.privateKeyFile) {
-        throw new Error('config error: specify "password" or "privateKeyFile" field')
-    } else if (!config.path || !config.remoteDir) {
-        throw new Error('config error: both "path" and "remoteDir" fields are required')
-    }
-}
-
-export function cli(args) {
+export function cli(args: string[]) {
     const options = parseArgsToOptions(args)
-    const config: Config = JSON.parse(fs.readFileSync(options.configFile, "utf-8"))
-    checkConfig(config)
+    const config = loadConfig(options)
 
     const sftpConfig = {
         ...config,
