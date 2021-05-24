@@ -1,4 +1,4 @@
-type Config = {
+export type Config = {
     host: string
     username: string
     password?: string
@@ -8,9 +8,9 @@ type Config = {
     privateKeyFile?: string
 }
 
-type Options = {
+export type Options = {
     logType: Log
     configFile: string
 }
 
-type Log = "all" | "none" | "files" | "progress"
+export type Log = "all" | "none" | "files" | "progress"
