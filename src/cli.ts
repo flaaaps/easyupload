@@ -8,13 +8,16 @@ function parseArgsToOptions(raw): Options {
         {
             "--config": String,
             "--log-type": String,
+
+            "-c": "--config",
+            "-log": "--log-type",
         },
         {
             argv: raw.slice(2),
         }
     )
     return {
-        configFile: args["--config"] || "easyconf.json",
+        configFile: args["--config"] || "ezupload.json",
         logType: (args["--log-type"] as Log) || "all",
     }
 }
