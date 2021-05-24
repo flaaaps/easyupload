@@ -2,12 +2,12 @@
 Easily upload folders to your server using SFTP
 
 ```shell
-$ npx @flaaaps/easyupload
+$ npm install -g @flaaaps/easyupload
 ```
 
-## Example:
+## Example
 
-Create `ezupload.json` in your root directory
+Create the default config file `ezupload.json` in your root directory
 
 ```json
 {
@@ -22,7 +22,7 @@ Create `ezupload.json` in your root directory
 
 Upload based on the configuration in `ezupload.json`
 ```bash
-$ npx easyupload
+$ easyupload
 ```
 
 ## Configuration
