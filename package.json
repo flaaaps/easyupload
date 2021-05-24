@@ -1,8 +1,8 @@
 {
-    "name": "easyupload",
+    "name": "@flaaaps/easyupload",
     "version": "0.1.0",
     "description": "Easily upload folders to your server using SFTP",
-    "main": "dist/index.js",
+    "main": "dist/cli.js",
     "scripts": {
         "compile": "tsc",
         "watch": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/cli.ts\""
