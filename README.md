@@ -2,7 +2,7 @@
 Easily upload folders to your server using SFTP
 
 ```shell
-$ npx easyupload
+$ npx @flaaaps/easyupload
 ```
 
 ## Example:
