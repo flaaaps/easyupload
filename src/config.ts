@@ -34,8 +34,7 @@ function parseFile(path?: string): Config | {} {
         const config = JSON.parse(file)
 
         if (config) return config
-    } catch (e) {
-    }
+    } catch (e) {}
 
     return {}
 }

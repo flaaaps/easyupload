@@ -17,7 +17,7 @@ function parseArgsToOptions(raw: string[]): Options {
             "-i": "--ignore-global-config"
         },
         {
-            argv: raw.slice(2),
+            argv: raw.slice(2)
         }
     )
 
@@ -34,14 +34,14 @@ export function cli(args: string[]) {
 
     const sftpConfig = {
         ...config,
-        privateKey: fs.readFileSync(config.privateKeyFile),
+        privateKey: fs.readFileSync(config.privateKeyFile)
     }
     const sftp = new SftUpload(sftpConfig)
     const logType = options.logType
     sftp.on("error", function (err) {
         throw err
     })
-        .on("uploading", function (progress) {
+        .on("uploading", progress => {
             const outputFile = `Uploading "${progress.file}"...`
             const outputProgress = `${progress.percent}% completed`
 
@@ -51,7 +51,7 @@ export function cli(args: string[]) {
             } else if (logType === "files") console.log(outputFile)
             else if (logType === "progress") console.log(outputProgress)
         })
-        .on("completed", function () {
+        .on("completed", () => {
             if (logType === "all" || logType === "progress") console.log("Upload Completed")
         })
         .upload()
