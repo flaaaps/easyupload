@@ -1,6 +1,6 @@
 {
     "name": "@flaaaps/easyupload",
-    "version": "0.1.2",
+    "version": "0.1.4",
     "description": "Easily upload folders to your server using SFTP",
     "main": "dist/cli.js",
     "scripts": {
@@ -8,8 +8,7 @@
         "watch": "nodemon --watch \"src/**\" --ext \"ts,json\" --ignore \"src/**/*.spec.ts\" --exec \"ts-node src/cli.ts\""
     },
     "bin": {
-        "@flaaaps/easyupload": "bin/easyupload",
-        "easyupload": "bin/easyupload"
+        "easyupload": "./bin/easyupload"
     },
     "publishConfig": {
         "access": "public"
@@ -29,11 +28,12 @@
     },
     "homepage": "https://github.com/flaaaps/easyupload#readme",
     "dependencies": {
-        "arg": "^5.0.0",
+        "arg": "^5.0.1",
         "esm": "^3.2.25",
         "sftp-upload": "^1.0.3"
     },
     "devDependencies": {
-        "@types/node": "^15.6.0"
+        "@types/node": "^15.6.0",
+        "typescript": "^4.5.5"
     }
 }
