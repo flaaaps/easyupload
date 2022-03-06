@@ -1,6 +1,6 @@
 {
     "name": "@flaaaps/easyupload",
-    "version": "0.1.4",
+    "version": "0.2.0",
     "description": "Easily upload folders to your server using SFTP",
     "main": "dist/cli.js",
     "scripts": {
