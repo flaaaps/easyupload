@@ -54,6 +54,12 @@ function parseArgsToOptions(raw: string[]): Arguments {
 }
 
 export function cli(args: string[]) {
+    if(args.slice(2).length > 0 && args.slice(2)[0] === "format") {
+        const formatArgs = args.slice(3)
+        console.log(parsePrivateKey(formatArgs[0]))
+        return
+    }
+
     const options = parseArgsToOptions(args)
     const config: Config | Options = resolveConfiguration(options)
 
@@ -95,8 +101,7 @@ function parsePrivateKey(key: string) {
         .replace("-----END RSA PRIVATE KEY-----", "")
         .trim()
 
-    return `
------BEGIN RSA PRIVATE KEY-----
-${plainKey.replace(" ", "\n")}
+    return `-----BEGIN RSA PRIVATE KEY-----
+${plainKey.replace(/ /g, "\n")}
 -----END RSA PRIVATE KEY-----`
 }
